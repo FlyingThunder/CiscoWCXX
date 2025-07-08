@@ -134,6 +134,7 @@ $(document).ready(function () {
         }
         //*** If the web page loaded is / (index.html or 'the homepage') with returned account data
         else{
+          console.log(path)
           var priceDisplay = document.getElementsByClassName("price")[1];
           priceDisplay.innerText = price;
           var productDisplay = document.getElementsByClassName("product")[1];
