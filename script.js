@@ -33,7 +33,7 @@ $(document).ready(function () {
       // ***b If no account details are returned the below JS will execute
       if (data.records[0] === undefined){
         console.log('no records');
-        if (path.match("account.html")){
+        if (path.match("https://flyingthunder.github.io/CiscoWCXX/account.html")){
           var accountReturned = $('#accountReturned'); accountReturned.hide();
           var newAccount = $('#newAccount'); newAccount.show();
           var createEnter = $('#create-enter');
