@@ -91,7 +91,7 @@ $(document).ready(function () {
         console.log(data);
         console.log('Record for ' + data.records[0].fields.customerName  + ' retrieved')
         //*** If the web page loaded is /account.html with returned account data
-        if (path.match("account.html")){
+        if (path.match("https://github.com/FlyingThunder/CiscoWCXX/account.html")){
           var nameDisplay = document.getElementsByClassName("customerName")[0];
           nameDisplay.innerText = data.records[0].fields.customerName;
           var nameDisplay1 = document.getElementsByClassName("customerName")[1];
@@ -128,7 +128,7 @@ $(document).ready(function () {
           });
         } 
         //*** If the web page loaded is /return.html with returned account data
-        else if (path.match("return.html")){
+        else if (path.match("https://github.com/FlyingThunder/CiscoWCXX/return.html")){
           var nameDisplay = document.getElementById("customerName");
           nameDisplay.innerText = data.records[0].fields.customerName;
         }
