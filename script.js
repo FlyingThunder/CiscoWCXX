@@ -134,7 +134,9 @@ $(document).ready(function () {
         }
         //*** If the web page loaded is / (index.html or 'the homepage') with returned account data
         else{
-          console.log(path)
+          console.log(">"+path+"<")
+          if (path.match("/CiscoWCXX/account.html")){
+            console.log("Test")}
           var priceDisplay = document.getElementsByClassName("price")[1];
           priceDisplay.innerText = price;
           var productDisplay = document.getElementsByClassName("product")[1];
