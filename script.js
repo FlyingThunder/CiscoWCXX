@@ -152,7 +152,7 @@ $(document).ready(function () {
             var orderVal = 'better' + Math.floor((Math.random() * 100) + 10) + Math.floor((Math.random() * 100) + 10);
             $('.orderId').text(orderVal);
             $.ajax({
-              url: 'https://hooks.eu.webexconnect.io/events/0R817CAADD', // Website order confirmation
+              url: 'https://hooks.eu.webexconnect.io/events/6GZC82ADF7', // Website order confirmation
               type: 'POST',
               contentType: "application/json",
               dataType: "json",
