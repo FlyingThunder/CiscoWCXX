@@ -17,6 +17,8 @@ $(document).ready(function () {
     success: function(data) {
       console.log('Airtable - 200');
       var path = window.location.pathname;
+      var user_id = data.records[0].id
+      console.log("Your id is "+user_id)
       
       
       
@@ -53,7 +55,7 @@ $(document).ready(function () {
             var ccTelEnter = $('#ccTel-enter');
             var xccTel = ccTelEnter.val();
             $.ajax({
-              url: 'https://hooks.eu.webexconnect.io/events/B6CD136ZWP',
+              url: 'https://hooks.eu.webexconnect.io/events/0R817CAADD', // Account management
               type: 'POST',
               contentType: "application/json",
               dataType: "json",
@@ -109,7 +111,7 @@ $(document).ready(function () {
           var deleteEnter = $('#delete-enter');
           deleteEnter.click(function (){
             $.ajax({
-              url: 'https://hooks.eu.webexconnect.io/events/B6CD136ZWP',
+              url: 'https://hooks.eu.webexconnect.io/events/0R817CAADD', // Flow - Account Management
               type: 'POST',
               contentType: "application/json",
               dataType: "json",
@@ -150,7 +152,7 @@ $(document).ready(function () {
             var orderVal = 'better' + Math.floor((Math.random() * 100) + 10) + Math.floor((Math.random() * 100) + 10);
             $('.orderId').text(orderVal);
             $.ajax({
-              url: 'https://hooks.eu.webexconnect.io/events/0ENCVEP56Y',
+              url: 'https://hooks.eu.webexconnect.io/events/0R817CAADD', // Website order confirmation
               type: 'POST',
               contentType: "application/json",
               dataType: "json",
