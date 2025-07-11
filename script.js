@@ -17,8 +17,7 @@ $(document).ready(function () {
     success: function(data) {
       console.log('Airtable - 200');
       var path = window.location.pathname;
-      var user_id = data.records[0].id
-      console.log("Your id is "+user_id)
+
       
       
       
@@ -90,6 +89,8 @@ $(document).ready(function () {
       }
       // *** If an account is returned the below JS will execute
       else {
+        var user_id = data.records[0].id
+        console.log("Your id is "+user_id)
         console.log(data);
         console.log('Record for ' + data.records[0].fields.customerName  + ' retrieved')
         //*** If the web page loaded is /account.html with returned account data
