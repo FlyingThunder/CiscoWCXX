@@ -7,12 +7,12 @@ $(document).ready(function () {
   
   
   $.ajax({
-    url: 'https://api.airtable.com/v0/appZIsm4WdS7DZUEF/tblYOy9e3q82JEc6I/?filterByFormula=(customerEmail="' + xemail + '")',
+    url: 'https://api.airtable.com/v0/appanheizvuOpIRxP/Accounts?filterByFormula=(customerEmail="' + xemail + '")',
     type: 'GET',
     contentType: "application/json",
     dataType: "json",
     headers: {
-      'Authorization':'Bearer patLmKqdPfS6dPRUT.5163d15090da940e887cda69cc25aec3b6df012018efcdd16e1c5fc757af2686'
+      'Authorization':'Bearer pattUZbepbg7SR1zU.46a8b79b861e391832ed0495c19443bd3af18c9c1fc76d9b979fb3eed9a48783' // i realize there will be bots scraping for public access tokens, too bad!
     },
     success: function(data) {
       console.log('Airtable - 200');
