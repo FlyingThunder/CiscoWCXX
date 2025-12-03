@@ -1,43 +1,25 @@
-<script type="module">
-  // Load LitElement from unpkg CDN
-  import { LitElement, html, css } from 'https://unpkg.com/lit@2.7.2?module';
+(() => {
+    customElements.define("supervisor-control", class extends HTMLElement {
+        constructor() {
+            super();
+            this.attachShadow({ mode: "open" });
 
-  class ButtonWidget extends LitElement {
-    static styles = css`
-      .btn {
-        padding: 10px 20px;
-        font-size: 16px;
-        cursor: pointer;
-        color: white;
-        border: none;
-        background-color: var(--btn-color, #3498db);
-        transition: background-color 0.2s;
-      }
-    `;
+            const button = document.createElement("button");
+            button.textContent = "Press Me";
+            button.style.padding = "10px 20px";
+            button.style.fontSize = "16px";
+            button.style.cursor = "pointer";
+            button.style.backgroundColor = "#3498db";
+            button.style.color = "white";
+            button.style.border = "none";
 
-    static properties = {
-      toggled: { type: Boolean }
-    };
+            let toggled = false;
+            button.addEventListener("click", () => {
+                toggled = !toggled;
+                button.style.backgroundColor = toggled ? "#e74c3c" : "#3498db";
+            });
 
-    constructor() {
-      super();
-      this.toggled = false;
-    }
-
-    toggleColor() {
-      this.toggled = !this.toggled;
-    }
-
-    render() {
-      const currentColor = this.toggled ? "#e74c3c" : "#3498db";
-      return html`
-        <button class="btn" style="background-color: ${currentColor}" @click=${this.toggleColor}>
-          Press Me
-        </button>
-      `;
-    }
-  }
-
-  // Register the custom element
-  customElements.define('supervisor-control', ButtonWidget);
-</script>
+            this.shadowRoot.appendChild(button);
+        }
+    });
+})();
