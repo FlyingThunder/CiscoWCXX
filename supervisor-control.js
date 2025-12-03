@@ -45,8 +45,8 @@
                         body: JSON.stringify({ data: payload })
                     });
                     
-                    throw new Error(`Widget status: ${response.status}`);
-                    throw new Error(`Widget text: ${response.text}`);
+                    console.log(`Widget status: ${response.status}`);
+                    console.log(`Widget text: ${response.text}`);
 
                     alert("Data sent successfully!");
                 } catch (err) {
