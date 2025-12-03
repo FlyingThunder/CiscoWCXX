@@ -16,22 +16,15 @@
             //
             // --- Text Input ---
             //
-            const textarea = document.createElement("textarea");
-            textarea.placeholder = "Enter value";
-            textarea.style.padding = "8px 10px";
-            textarea.style.fontSize = "14px";
-            textarea.style.width = "250px";
-            textarea.style.minHeight = "30px"; // initial height
-            textarea.style.resize = "none"; // optional: prevent manual resizing
-
-            // Optional: auto-expand as user types
-            textarea.addEventListener("input", () => {
-            textarea.style.height = "auto"; // reset height
-            textarea.style.height = textarea.scrollHeight + "px"; // set to content height
-            });
+            const input = document.createElement("input");
+            input.type = "text";
+            input.placeholder = "Enter value";
+            input.style.padding = "8px 10px";
+            input.style.fontSize = "14px";
+            input.style.width = "150px";
 
             // WxCC styling
-            this.applyWxCCInputStyle(textarea);
+            this.applyWxCCInputStyle(input);
 
 
             //
