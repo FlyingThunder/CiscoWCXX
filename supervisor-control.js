@@ -1,8 +1,9 @@
-import { html, css, LitElement } from 'lit';
+<script type="module">
+  // Load LitElement from unpkg CDN
+  import { LitElement, html, css } from 'https://unpkg.com/lit@2.7.2?module';
 
-export class ButtonWidget extends LitElement {
-  static get styles() {
-    return css`
+  class ButtonWidget extends LitElement {
+    static styles = css`
       .btn {
         padding: 10px 20px;
         font-size: 16px;
@@ -13,36 +14,30 @@ export class ButtonWidget extends LitElement {
         transition: background-color 0.2s;
       }
     `;
-  }
 
-  static get properties() {
-    return {
+    static properties = {
       toggled: { type: Boolean }
     };
+
+    constructor() {
+      super();
+      this.toggled = false;
+    }
+
+    toggleColor() {
+      this.toggled = !this.toggled;
+    }
+
+    render() {
+      const currentColor = this.toggled ? "#e74c3c" : "#3498db";
+      return html`
+        <button class="btn" style="background-color: ${currentColor}" @click=${this.toggleColor}>
+          Press Me
+        </button>
+      `;
+    }
   }
 
-  constructor() {
-    super();
-    this.toggled = false;
-  }
-
-  toggleColor() {
-    this.toggled = !this.toggled;
-  }
-
-  render() {
-    const currentColor = this.toggled ? "#e74c3c" : "#3498db";
-
-    return html`
-      <button
-        class="btn"
-        style="background-color: ${currentColor}"
-        @click="${this.toggleColor}"
-      >
-        Press Me
-      </button>
-    `;
-  }
-}
-
-customElements.define('supervisor-control', ButtonWidget);
+  // Register the custom element
+  customElements.define('supervisor-control', ButtonWidget);
+</script>
