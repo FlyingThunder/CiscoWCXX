@@ -24,7 +24,7 @@
             select.style.fontSize = "14px";
 
             // Add options
-            ["desc1", "desc2", "desc3"].forEach(optText => {
+            ["var_1", "var_2", "var_3"].forEach(optText => {
                 const option = document.createElement("option");
                 option.value = optText;
                 option.textContent = optText;
