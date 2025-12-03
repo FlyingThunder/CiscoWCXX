@@ -45,14 +45,11 @@
                         body: JSON.stringify({ data: payload })
                     });
                     
-                    throw new Error(`HTTP error! status: ${response.status}`);
-
+                    throw new Error(`Widget status: ${response.status}`);
+                    throw new Error(`Widget text: ${response.text}`);
 
                     alert("Data sent successfully!");
-                } catch (err) {
-                    console.error(err);
-                    alert("Error sending data. Check console for details.");
-                }
+                } 
             });
 
             // Add textbox and button to container
