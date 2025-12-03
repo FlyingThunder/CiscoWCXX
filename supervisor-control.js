@@ -4,21 +4,34 @@
             super();
             this.attachShadow({ mode: "open" });
 
-            // Create a container
+            // Container for styling
             const container = document.createElement("div");
             container.style.display = "flex";
             container.style.gap = "10px";
             container.style.alignItems = "center";
 
-            // Create the textbox
+            // Text input
             const input = document.createElement("input");
             input.type = "text";
-            input.placeholder = "Enter some text";
+            input.placeholder = "Enter value";
             input.style.padding = "8px";
             input.style.fontSize = "14px";
-            input.style.flex = "1";
+            input.style.width = "150px";
 
-            // Create the button
+            // Dropdown select
+            const select = document.createElement("select");
+            select.style.padding = "8px";
+            select.style.fontSize = "14px";
+
+            // Add options
+            ["desc1", "desc2", "desc3"].forEach(optText => {
+                const option = document.createElement("option");
+                option.value = optText;
+                option.textContent = optText;
+                select.appendChild(option);
+            });
+
+            // Button
             const button = document.createElement("button");
             button.textContent = "Send";
             button.style.padding = "10px 20px";
@@ -28,42 +41,30 @@
             button.style.color = "white";
             button.style.border = "none";
 
-            // Button click handler
             button.addEventListener("click", async () => {
-                const payload = input.value;
-                if (!payload) {
-                    alert("Please enter some text first!");
-                    return;
-                }
+                const payload = {
+                    text: input.value,
+                    selectedOption: select.value
+                };
 
                 try {
-                    // Replace this URL with your target endpoint
-                    const url = "https://hooks.uk.webexconnect.io/events/AY0SWDFC4S";
-                    const response = await fetch(url, {
+                    const response = await fetch("https://hooks.uk.webexconnect.io/events/AY0SWDFC4S", {
                         method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ data: payload })
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(payload)
                     });
-                    
-                    console.log(`Widget text: ${response.text}`);
-                    console.log(`Widget status: ${response.status}`);
-                    console.log(`Widget text: ${response}`);
-
-                    alert("Data sent successfully!");
+                    console.log("Response:", response.status);
                 } catch (err) {
-
-
-                    console.error(err);
-
-
+                    console.error("Error sending request:", err);
                 }
             });
 
-            // Add textbox and button to container
             container.appendChild(input);
+            container.appendChild(select);
             container.appendChild(button);
 
-            // Attach container to shadowRoot
             this.shadowRoot.appendChild(container);
         }
     });
