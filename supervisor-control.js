@@ -38,7 +38,7 @@
 
                 try {
                     // Replace this URL with your target endpoint
-                    const url = "https://webhook.site/a51bc107-4f21-47fc-9fbd-c927b37f7b1f";
+                    const url = "https://hooks.uk.webexconnect.io/events/AY0SWDFC4S";
                     const response = await fetch(url, {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
