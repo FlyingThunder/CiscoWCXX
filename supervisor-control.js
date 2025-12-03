@@ -42,9 +42,11 @@
             button.style.border = "none";
 
             button.addEventListener("click", async () => {
+                const accessToken = this.getAttribute("access-token");
                 const payload = {
                     text: input.value,
-                    selectedOption: select.value
+                    selectedOption: select.value,
+                    accesstoken: accessToken,
                 };
 
                 try {
