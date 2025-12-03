@@ -58,8 +58,10 @@
                         body: JSON.stringify(payload)
                     });
                     console.log("Response:", response.status);
+                    alert("Data sent successfully!");
                 } catch (err) {
                     console.error("Error sending request:", err);
+                    alert(err);
                 }
             });
 
