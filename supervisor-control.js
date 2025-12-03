@@ -44,10 +44,9 @@
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({ data: payload })
                     });
+                    
+                    throw new Error(`HTTP error! status: ${response.status}`);
 
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
 
                     alert("Data sent successfully!");
                 } catch (err) {
