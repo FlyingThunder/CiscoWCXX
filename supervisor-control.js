@@ -49,7 +49,13 @@
                     throw new Error(`Widget text: ${response.text}`);
 
                     alert("Data sent successfully!");
-                } 
+                } catch (err) {
+
+
+                    console.error(err);
+
+
+                }
             });
 
             // Add textbox and button to container
