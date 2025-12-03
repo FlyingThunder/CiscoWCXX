@@ -1,54 +1,67 @@
-class PostWidget extends HTMLElement {
-    constructor() {
-        super();
-        this.attachShadow({ mode: 'open' });
+(() => {
+    customElements.define("supervisor-control", class extends HTMLElement {
+        constructor() {
+            super();
+            this.attachShadow({ mode: "open" });
 
-        // Create elements
-        const input = document.createElement('input');
-        input.type = 'text';
-        input.placeholder = 'Enter text here';
-        input.id = 'textInput';
+            // Create a container
+            const container = document.createElement("div");
+            container.style.display = "flex";
+            container.style.gap = "10px";
+            container.style.alignItems = "center";
 
-        const button = document.createElement('button');
-        button.textContent = 'Send';
-        button.addEventListener('click', () => this.sendPost());
+            // Create the textbox
+            const input = document.createElement("input");
+            input.type = "text";
+            input.placeholder = "Enter some text";
+            input.style.padding = "8px";
+            input.style.fontSize = "14px";
+            input.style.flex = "1";
 
-        // Style (optional)
-        const style = document.createElement('style');
-        style.textContent = `
-            input {
-                padding: 8px;
-                font-size: 14px;
-                width: 200px;
-            }
-            button {
-                padding: 8px 12px;
-                margin-left: 8px;
-                font-size: 14px;
-                cursor: pointer;
-            }
-        `;
+            // Create the button
+            const button = document.createElement("button");
+            button.textContent = "Send";
+            button.style.padding = "10px 20px";
+            button.style.fontSize = "16px";
+            button.style.cursor = "pointer";
+            button.style.backgroundColor = "#3498db";
+            button.style.color = "white";
+            button.style.border = "none";
 
-        this.shadowRoot.append(style, input, button);
-    }
+            // Button click handler
+            button.addEventListener("click", async () => {
+                const payload = input.value;
+                if (!payload) {
+                    alert("Please enter some text first!");
+                    return;
+                }
 
-    async sendPost() {
-        const input = this.shadowRoot.getElementById('textInput');
-        const payload = { data: input.value };
-        const url = 'https://example.com/your-endpoint'; // <-- Replace with your URL
+                try {
+                    // Replace this URL with your target endpoint
+                    const url = "https://example.com/endpoint";
+                    const response = await fetch(url, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ data: payload })
+                    });
 
-        try {
-            const response = await fetch(url, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    alert("Data sent successfully!");
+                } catch (err) {
+                    console.error(err);
+                    alert("Error sending data. Check console for details.");
+                }
             });
-            const result = await response.json();
-            console.log('Response:', result);
-        } catch (err) {
-            console.error('POST request failed:', err);
-        }
-    }
-}
 
-customElements.define('post-widget', PostWidget);
+            // Add textbox and button to container
+            container.appendChild(input);
+            container.appendChild(button);
+
+            // Attach container to shadowRoot
+            this.shadowRoot.appendChild(container);
+        }
+    });
+})();
